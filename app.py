@@ -1,20 +1,11 @@
-import os
-from flask import Flask
 
-app = Flask(__name__)
+from datetime import datetime
 
-@app.route('/')
-def home():
-    return """
-<center> 
-    <img src="https://i.giphy.com/media/3o7abAHdYvZdBNnGZq/giphy.webp" style="border-radius: 12px;"/> 
-</center> 
-<style>
-    body { 
-        background: antiquewhite;
-    }
-</style>"""
+# Track the start time of the app
+start_time = datetime.now()
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+def get_uptime():
+    # Calculate the time difference between now and start time
+    uptime = datetime.now() - start_time
+    uptime_str = str(uptime).split(".")[0]  # Format as hh:mm:ss
+    return f"⏳ **Project Uptime**: {uptime_str}"
